@@ -44,6 +44,8 @@ namespace CardShop.Controllers {
             if (ModelState.IsValid) {
                 ViewData["Msg"] = "Thank you " + cus.FirstName + " " +
                     cus.LastName + " for registering.";
+
+                // Add to DB
             }
             return View(cus);
         }

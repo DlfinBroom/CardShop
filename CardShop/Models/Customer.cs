@@ -19,7 +19,7 @@ namespace CardShop.Models {
         [Required, EmailAddress]
         public string Email { get; set; }
 
-        [Required, DataType(DataType.PhoneNumber) ]
+        [Required]
         public int PhoneNum { get; set; }
     }
 }
