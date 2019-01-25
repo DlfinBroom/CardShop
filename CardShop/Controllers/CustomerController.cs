@@ -19,17 +19,22 @@ namespace CardShop.Controllers {
         }
         [HttpPost]
         public IActionResult Register(IFormCollection data) {
-            Customer customer = new Customer();
-            customer.FirstName = data["FirstName"];
-            customer.LastName = data["LastName"];
-            customer.Password = data["Password"];
-            customer.Email = data["Email"];
-            customer.PhoneNum = Convert.ToInt32(data["PhoneNum"]);
+            Customer cus = new Customer();
+            cus.FirstName = data["FirstName"];
+            cus.LastName = data["LastName"];
+            cus.Password = data["Password"];
+            cus.Email = data["Email"];
+            cus.PhoneNum = Convert.ToInt32(data["PhoneNum"]);
 
-            // Add to DB
-
-            ViewData["Msg"] = "Thank you " + data["FirstName"] + " " 
-                                           + data["LastName"] + " for registering.";
+            if (CustomerDB.AddCustomer(cus)) {
+                ViewData["Msg"] = "Thank you " +
+                    cus.FirstName + " " + cus.LastName +
+                    ", your information was added to the data base.";
+            }
+            else {
+                ViewData["Msg"] = "Sorry, there was an error with adding you, " +
+                    "try again later.";
+            }
 
             return View();
         }
@@ -42,10 +47,15 @@ namespace CardShop.Controllers {
         public IActionResult SignUp(Customer cus) {
             // Validate input
             if (ModelState.IsValid) {
-                ViewData["Msg"] = "Thank you " + cus.FirstName + " " +
-                    cus.LastName + " for registering.";
-
-                // Add to DB
+                if (CustomerDB.AddCustomer(cus)) {
+                    ViewData["Msg"] = "Thank you " +
+                        cus.FirstName + " " + cus.LastName +
+                        ", your information was added to the data base.";
+                }
+                else {
+                    ViewData["Msg"] = "Sorry, there was an error with adding you, " +
+                        "try again later.";
+                }
             }
             return View(cus);
         }
