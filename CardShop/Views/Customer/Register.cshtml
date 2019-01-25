@@ -1,7 +1,48 @@
-﻿
+﻿@model Customer
 @{
     ViewData["Title"] = "Register";
 }
 
 <h2>Register</h2>
+
+<h4>New customer? Fill out all information below to register today!</h4>
+<h5>model binding version</h5>
+
+<form asp-action="CustomerBinding"
+      asp-controller="Customer">
+
+    <!-- // First Name // -->
+    <label asp-for="FirstName"></label>
+    <input asp-for="FirstName" />
+    <span class="text-danger" asp-validation-for="FirstName"></span>
+    <br />
+
+    <!-- // Last Name // -->
+    <label asp-for="LastName"></label>
+    <input asp-for="LastName" />
+    <span class="text-danger" asp-validation-for="LastName"></span>
+    <br />
+
+    <!-- // Password // -->
+    <label asp-for="Password"></label>
+    <input asp-for="Password" />
+    <span class="text-danger" asp-validation-for="Password"></span>
+    <br />
+
+    <!-- // Email // -->
+    <label asp-for="Email"></label>
+    <input asp-for="Email" />
+    <span class="text-danger" asp-validation-for="Email"></span>
+    <br />
+
+    <!-- // PhoneNum // -->
+    <label asp-for="PhoneNum"></label>
+    <input asp-for="PhoneNum" />
+    <span class="text-danger" asp-validation-for="PhoneNum"></span>
+    <br />
+
+    <!-- // Submit // -->
+    <input class="btn btn-primary" type="submit" value="Register Student" />
+
+</form>
 
